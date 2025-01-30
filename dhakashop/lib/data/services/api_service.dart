@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ApiService {
-  final String baseUrl = 'https://jsonplaceholder.typicode.com';
-  String token="";
+  final String baseUrl = 'http://192.168.0.108:8000/api/';
+  String token="d3ee5ff6ff740b97cc90e11c7e408d881b3e8ad3";
 
   Future<dynamic> getRequest(String endpoint) async {
     try {
