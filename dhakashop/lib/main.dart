@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          initialRoute: RoutesName.bottomNavbar,
+          initialRoute: RoutesName.splash,
           onGenerateRoute: Routes.generateRoute,
         ),
       ),

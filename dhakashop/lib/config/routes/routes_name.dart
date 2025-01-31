@@ -20,5 +20,8 @@ class RoutesName {
   //Bottom Navbar routes name
   static const String bottomNavbar = 'bottom_navbar' ;
 
+  //profile view routes name
+  static const String profileView = 'profile_view' ;
+
 
 }

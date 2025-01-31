@@ -6,13 +6,14 @@ import 'package:dhakashop/presentation/product/page/product_details.dart';
 import 'package:flutter/material.dart';
 import '../../presentation/home/page/product_page.dart';
 import '../../presentation/login/page/login_screen.dart';
+import '../../presentation/profile/page/profile_page.dart';
 import '../../presentation/splash/page/splash.dart';
 
 class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case RoutesName.splash:
-        return MaterialPageRoute(builder: (BuildContext context) => const SplashView());
+        return MaterialPageRoute(builder: (BuildContext context) => const SplashScreen());
 
       case RoutesName.home:
         return MaterialPageRoute(builder: (BuildContext context) => const ProductPage());
@@ -41,6 +42,12 @@ class Routes {
       case RoutesName.bottomNavbar:
         return MaterialPageRoute(
           builder: (BuildContext context) => BottomNavbar(),
+        );
+
+
+      case RoutesName.profileView:
+        return MaterialPageRoute(
+          builder: (BuildContext context) => ProfilePage(),
         );
 
       default:

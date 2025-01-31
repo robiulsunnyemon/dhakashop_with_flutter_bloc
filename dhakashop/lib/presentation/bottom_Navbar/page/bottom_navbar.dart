@@ -1,10 +1,12 @@
 
 import 'package:dhakashop/presentation/cart/page/cart_view.dart';
 import 'package:dhakashop/presentation/home/page/product_page.dart';
+import 'package:dhakashop/presentation/profile/page/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../cart/bloc/cart_products_bloc.dart';
 import '../../home/bloc/product_bloc.dart';
+import '../../order/bloc/order_bloc.dart';
 import '../bloc/bottom_navbar_bloc.dart';
 
 class BottomNavbar extends StatefulWidget {
@@ -27,6 +29,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
   void _loadProducts() {
     context.read<ProductBloc>().add(LoadProducts());
     context.read<CartProductsBloc>().add(LoadCartProducts());
+    context.read<OrderBloc>().add(LoadOrderProducts());
   }
 
 
@@ -40,7 +43,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
             ProductPage(),
             CategoryScreen(),
             CartView(),
-            ProfileScreen(),
+            ProfilePage(),
           ];
           return screens[state.index];
         },
@@ -50,7 +53,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
           return BottomNavigationBar(
             currentIndex: state.index,
             onTap: (index) => context.read<BottomNavBarBloc>().add(NavBarItemTapped(index)),
-            selectedItemColor: Colors.blue,
+            selectedItemColor: Colors.red,
             unselectedItemColor: Colors.grey,
             items: [
               BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
