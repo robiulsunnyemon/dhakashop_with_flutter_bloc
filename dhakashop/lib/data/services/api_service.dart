@@ -12,6 +12,10 @@ class ApiService {
         'Content-Type': 'application/json',
         'Authorization': 'Token $token',
       });
+
+      // print(response.body);
+      // print("status code: ${response.statusCode}");
+
       if (response.statusCode == 200) {
         return json.decode(response.body);
       } else {

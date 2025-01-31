@@ -14,5 +14,11 @@ class RoutesName {
   //cart product routes name
   static const String cartProduct = 'cart_product' ;
 
+  //order product routes name
+  static const String orderProduct = 'order_product' ;
+
+  //Bottom Navbar routes name
+  static const String bottomNavbar = 'bottom_navbar' ;
+
 
 }

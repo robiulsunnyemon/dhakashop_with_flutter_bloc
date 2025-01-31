@@ -39,23 +39,43 @@ class CartProductsBloc extends Bloc<CartProductsEvent, CartProductsState> {
     );
 
 
-    on<PostCartProduct>(
+    on<AddCartProduct>(
             (event, emit)async{
           emit(CartProductLoading());
           try {
-            bool isDeleted = await cartProductRepository.postCartProducts(id: event.id);
+            bool isDeleted = await cartProductRepository.addCartProducts(id: event.id);
             if (isDeleted) {
               final updatedCartProducts = await cartProductRepository.getProducts();
               emit(CartProductLoaded(updatedCartProducts));
             } else {
-              emit(CartProductError("Failed to delete product!"));
+              final updatedCartProducts = await cartProductRepository.getProducts();
+              emit(CartProductLoaded(updatedCartProducts));
             }
           } catch (e) {
-            emit(CartProductError("Failed to delete product!"));
+            final updatedCartProducts = await cartProductRepository.getProducts();
+            emit(CartProductLoaded(updatedCartProducts));
           }
         }
     );
 
+    on<AddOrderProduct>(
+            (event, emit)async{
+          emit(CartProductLoading());
+          try {
+            bool isDeleted = await cartProductRepository.addOrderProducts(id: event.id);
+            if (isDeleted) {
+              final updatedCartProducts = await cartProductRepository.getProducts();
+              emit(CartProductLoaded(updatedCartProducts));
+            } else{
+              final updatedCartProducts = await cartProductRepository.getProducts();
+              emit(CartProductLoaded(updatedCartProducts));
+            }
+          } catch (e) {
+            final updatedCartProducts = await cartProductRepository.getProducts();
+            emit(CartProductLoaded(updatedCartProducts));
+          }
+        }
+    );
 
 
     

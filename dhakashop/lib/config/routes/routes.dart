@@ -1,5 +1,7 @@
 import 'package:dhakashop/config/routes/routes_name.dart';
+import 'package:dhakashop/presentation/bottom_Navbar/page/bottom_navbar.dart';
 import 'package:dhakashop/presentation/cart/page/cart_view.dart';
+import 'package:dhakashop/presentation/order/page/order_view.dart';
 import 'package:dhakashop/presentation/product/page/product_details.dart';
 import 'package:flutter/material.dart';
 import '../../presentation/home/page/product_page.dart';
@@ -28,6 +30,17 @@ class Routes {
         return MaterialPageRoute(
           builder: (BuildContext context) => CartView(),
 
+        );
+
+
+      case RoutesName.orderProduct:
+        return MaterialPageRoute(
+          builder: (BuildContext context) => OrderView(),
+        );
+
+      case RoutesName.bottomNavbar:
+        return MaterialPageRoute(
+          builder: (BuildContext context) => BottomNavbar(),
         );
 
       default:

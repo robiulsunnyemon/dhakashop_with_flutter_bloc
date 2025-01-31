@@ -9,15 +9,23 @@ class LoadCartProducts extends CartProductsEvent {
   List<Object?> get props => [];
 }
 
-class PostCartProduct extends CartProductsEvent{
+class AddCartProduct extends CartProductsEvent{
   final int id;
-  PostCartProduct({required this.id});
+  AddCartProduct({required this.id});
 
   @override
   List<Object?> get props =>[id];
 
 }
 
+class AddOrderProduct extends CartProductsEvent{
+  final int id;
+  AddOrderProduct({required this.id});
+
+  @override
+  List<Object?> get props =>[id];
+
+}
 
 class DeleteCartProduct extends CartProductsEvent{
   final int id;
