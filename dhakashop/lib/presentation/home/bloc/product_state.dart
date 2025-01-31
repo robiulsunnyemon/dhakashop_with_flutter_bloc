@@ -14,19 +14,11 @@ class ProductLoading extends ProductState {
 }
 class ProductLoaded extends ProductState {
   final List<Product> products;
-  ProductLoaded(this.products);
 
+  ProductLoaded(this.products);
   @override
   // TODO: implement props
   List<Object?> get props =>[products];
-}
-class ProductDetailsLoaded extends ProductState {
-  final List<Product> productDetails;
-  ProductDetailsLoaded(this.productDetails);
-
-  @override
-  // TODO: implement props
-  List<Object?> get props =>[productDetails];
 }
 class ProductError extends ProductState {
   final String message;

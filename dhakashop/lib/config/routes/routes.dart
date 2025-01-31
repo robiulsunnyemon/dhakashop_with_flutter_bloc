@@ -1,9 +1,7 @@
 import 'package:dhakashop/config/routes/routes_name.dart';
-import 'package:dhakashop/presentation/product/bloc/product_details_bloc.dart';
+import 'package:dhakashop/presentation/cart/page/cart_view.dart';
 import 'package:dhakashop/presentation/product/page/product_details.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../presentation/home/page/product_page.dart';
 import '../../presentation/login/page/login_screen.dart';
 import '../../presentation/splash/page/splash.dart';
@@ -22,7 +20,13 @@ class Routes {
 
       case RoutesName.productDetails:
         return MaterialPageRoute(
-            builder: (BuildContext context) => const ProductDetails(),
+            builder: (BuildContext context) => ProductDetails(data: settings.arguments as Map<String, dynamic>),
+
+        );
+
+      case RoutesName.cartProduct:
+        return MaterialPageRoute(
+          builder: (BuildContext context) => CartView(),
 
         );
 

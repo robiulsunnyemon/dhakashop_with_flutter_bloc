@@ -2,6 +2,7 @@ import 'package:dhakashop/config/routes/routes_name.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../config/routes/routes.dart';
+import '../../cart/bloc/cart_products_bloc.dart';
 import '../bloc/product_bloc.dart';
 import '../../../data/models/product/product_model.dart';
 
@@ -17,12 +18,49 @@ class _ProductPageState extends State<ProductPage> {
   void initState() {
     super.initState();
     context.read<ProductBloc>().add(LoadProducts());
+    context.read<CartProductsBloc>().add(LoadCartProducts());
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Products')),
+      appBar: AppBar(
+        title: Text('Products'),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.pushNamed(context, RoutesName.cartProduct);
+              },
+              icon: Stack(
+                children: [
+                  Icon(Icons.shopping_cart_rounded),
+                  BlocBuilder<CartProductsBloc, CartProductsState>(
+                    builder: (context, state) {
+                      if (state is CartProductLoaded) {
+                        return Text(
+                          state.cartProducts.length.toString(),
+                          style: TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.red),
+                        );
+                      }
+                      return Text(
+                        "NO",
+                        style: TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.red),
+                      );
+                    },
+                  ),
+                ],
+              )),
+          SizedBox(
+            width: 20,
+          )
+        ],
+      ),
       body: BlocBuilder<ProductBloc, ProductState>(
         builder: (context, state) {
           if (state is ProductLoading) {
@@ -53,7 +91,14 @@ class _ProductPageState extends State<ProductPage> {
                               children: [
                                 ElevatedButton(
                                   onPressed: () {
-                                    context.read<ProductBloc>().add(LoadProductDetails(id: product.id));
+                                    Navigator.pushNamed(
+                                        context, RoutesName.productDetails,
+                                        arguments: {
+                                          "name": product.name,
+                                          "description": product.description,
+                                          "stock": product.stock,
+                                          "review": product.reviews.map((rev) => rev.toJson()).toList(),
+                                        });
                                   },
                                   child: Text("READ MORE"),
                                 ),

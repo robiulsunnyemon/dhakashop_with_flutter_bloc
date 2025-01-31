@@ -11,5 +11,8 @@ class RoutesName {
   //home product-details routes name
   static const String productDetails = 'product_details' ;
 
+  //cart product routes name
+  static const String cartProduct = 'cart_product' ;
+
 
 }

@@ -6,11 +6,3 @@ class LoadProducts extends ProductEvent {
   // TODO: implement props
   List<Object?> get props => [];
 }
-
-class LoadProductDetails extends ProductEvent {
-  final int id;
-  LoadProductDetails({required this.id});
-  @override
-  // TODO: implement props
-  List<Object?> get props => [id];
-}
