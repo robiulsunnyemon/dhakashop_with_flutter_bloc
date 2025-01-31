@@ -22,6 +22,7 @@ class CartProductLoaded extends CartProductsState {
   // TODO: implement props
   List<Object?> get props =>[cartProducts];
 }
+
 class CartProductError extends CartProductsState {
   final String message;
   CartProductError(this.message);

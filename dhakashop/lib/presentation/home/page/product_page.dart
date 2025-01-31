@@ -44,14 +44,15 @@ class _ProductPageState extends State<ProductPage> {
                               fontWeight: FontWeight.bold,
                               color: Colors.red),
                         );
-                      }
-                      return Text(
-                        "NO",
-                        style: TextStyle(
+                      }else {
+                        return Text(
+                        " ",
+                        style: const TextStyle(
                             fontSize: 30,
                             fontWeight: FontWeight.bold,
                             color: Colors.red),
                       );
+                      }
                     },
                   ),
                 ],
@@ -103,7 +104,9 @@ class _ProductPageState extends State<ProductPage> {
                                   child: Text("READ MORE"),
                                 ),
                                 ElevatedButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    context.read<CartProductsBloc>().add(PostCartProduct(id: product.id));
+                                  },
                                   child: Text("ADD TO CART"),
                                 ),
                               ],
@@ -118,8 +121,9 @@ class _ProductPageState extends State<ProductPage> {
             );
           } else if (state is ProductError) {
             return Center(child: Text(state.message));
+          }else {
+            return Center(child: Text(''));
           }
-          return Center(child: Text(''));
         },
       ),
     );

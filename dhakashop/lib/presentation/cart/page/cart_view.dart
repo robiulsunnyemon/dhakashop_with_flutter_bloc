@@ -32,13 +32,15 @@ class _CartViewState extends State<CartView> {
                   state.cartProducts.length.toString(),
                   style: TextStyle(
                       fontSize: 30, fontWeight: FontWeight.bold, color: Colors.red),
+                );  //cart value
+              }
+              else{
+                return Text(
+                  " ",
+                  style: TextStyle(
+                      fontSize: 30, fontWeight: FontWeight.bold, color: Colors.red),
                 );
               }
-              return Text(
-                "NO",
-                style: TextStyle(
-                    fontSize: 30, fontWeight: FontWeight.bold, color: Colors.red),
-              );
             },
           ),
           SizedBox(
@@ -65,6 +67,17 @@ class _CartViewState extends State<CartView> {
                           cartProduct.productName ?? "NO Product Name",
                           style: TextStyle(fontSize: 20, color: Colors.red),
                         ),
+                        subtitle: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            SizedBox(),
+                            ElevatedButton(onPressed: (){
+                              print("product id: ${cartProduct.product}");
+                              context.read<CartProductsBloc>().add(DeleteCartProduct(id: cartProduct.id!));
+
+                            }, child: Icon(Icons.delete,color: Colors.red,))
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -73,8 +86,9 @@ class _CartViewState extends State<CartView> {
             );
           } else if (state is CartProductError) {
             return Center(child: Text(state.message));
+          }else {
+            return Center(child: Text(''));
           }
-          return Center(child: Text(''));
         },
       ),
     );

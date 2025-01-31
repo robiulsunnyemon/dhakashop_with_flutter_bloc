@@ -20,5 +20,44 @@ class CartProductsBloc extends Bloc<CartProductsEvent, CartProductsState> {
         }
       },
     );
+    
+    on<DeleteCartProduct>(
+        (event, emit)async{
+          emit(CartProductLoading());
+          try {
+            bool isDeleted = await cartProductRepository.deleteProducts(id: event.id);
+            if (isDeleted) {
+              final updatedCartProducts = await cartProductRepository.getProducts();
+              emit(CartProductLoaded(updatedCartProducts));
+            } else {
+              emit(CartProductError("Failed to delete product!"));
+            }
+          } catch (e) {
+            emit(CartProductError("Failed to delete product!"));
+          }
+        }
+    );
+
+
+    on<PostCartProduct>(
+            (event, emit)async{
+          emit(CartProductLoading());
+          try {
+            bool isDeleted = await cartProductRepository.postCartProducts(id: event.id);
+            if (isDeleted) {
+              final updatedCartProducts = await cartProductRepository.getProducts();
+              emit(CartProductLoaded(updatedCartProducts));
+            } else {
+              emit(CartProductError("Failed to delete product!"));
+            }
+          } catch (e) {
+            emit(CartProductError("Failed to delete product!"));
+          }
+        }
+    );
+
+
+
+    
   }
 }
